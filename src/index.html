@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="color-scheme" content="dark" />
-        <title>Tic Tac Toe - by @ericmp33</title>
+        <title>Minimalist Tic Tac Toe</title>
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/cascadia-code.min.css"
@@ -14,36 +14,51 @@
         <script src="main.js"></script>
     </head>
     <body>
-        <div class="interface">
-            <h1
-                tabindex="10"
-                class="game-title"
-                title="Check out the source code"
-            >
-                <a
-                    tabindex="-1"
-                    href="https://github.com/ericmp33/tic-tac-toe/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >Tic tac toe</a
-                >
-            </h1>
-            <div class="game-board">
-                <div class="col col-0">
-                    <button tabindex="1" id="item-0" class="item">0</button>
-                    <button tabindex="2" id="item-1" class="item">1</button>
-                    <button tabindex="3" id="item-2" class="item">2</button>
+        <div class="flex-center-three flex-container">
+            <div class="interface flex-center-three">
+                <div class="flex-center-three title-container">
+                    <a
+                        href="#"
+                        target="_blank"
+                    >
+                        <h1
+                            class="game-title"
+                            title="Check out the source code"
+                        >
+                            Tic tac toe
+                        </h1>
+                    </a>
                 </div>
-                <div class="col col-1">
-                    <button tabindex="4" id="item-3" class="item">3</button>
-                    <button tabindex="5" id="item-4" class="item">4</button>
-                    <button tabindex="6" id="item-5" class="item">5</button>
+                <div class="game-board">
+                    <div class="col col-0">
+                        <a href="#" id="item-0" class="item">0</a>
+                        <a href="#" id="item-1" class="item">1</a>
+                        <a href="#" id="item-2" class="item">2</a>
+                    </div>
+                    <div class="col col-1">
+                        <a href="#" id="item-3" class="item">3</a>
+                        <a href="#" id="item-4" class="item">4</a>
+                        <a href="#" id="item-5" class="item">5</a>
+                    </div>
+                    <div class="col col-2">
+                        <a href="#" id="item-6" class="item">6</a>
+                        <a href="#" id="item-7" class="item">7</a>
+                        <a href="#" id="item-8" class="item">8</a>
+                    </div>
                 </div>
-                <div class="col col-2">
-                    <button tabindex="7" id="item-6" class="item">6</button>
-                    <button tabindex="8" id="item-7" class="item">7</button>
-                    <button tabindex="9" id="item-8" class="item">8</button>
-                </div>
+            </div>
+            <div class="info">
+                <p>
+                    Made by
+                    <a href="https://github.com/ericmp33/" target="_blank"
+                        >@ericmp33</a
+                    >. Source code
+                    <a
+                        href="https://github.com/ericmp33/tic-tac-toe/"
+                        target="_blank"
+                        >here</a
+                    >.
+                </p>
             </div>
         </div>
     </body>

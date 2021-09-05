@@ -1,4 +1,3 @@
-/* html reset */
 *,
 *::before,
 *::after {
@@ -13,20 +12,6 @@
     transition: all 0.4s;
 }
 
-/* button reset */
-button,
-input[type="submit"],
-input[type="reset"] {
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-}
-
-/* a reset */
 a {
     text-decoration: none;
 }
@@ -38,31 +23,37 @@ a {
 
 body {
     background: var(--black);
+}
+
+.flex-center-three {
     display: flex;
     align-content: center;
     justify-content: center;
     align-items: center;
+}
+
+.flex-container {
     height: 100vh;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .interface {
-    display: flex;
     flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    justify-content: center;
     background-color: #282c34;
     padding: 15px;
     border-radius: 7px;
+    box-shadow: rgba(17, 17, 26, 0.3) 0px 8px 24px,
+        rgba(17, 17, 26, 0.3) 0px 16px 56px, rgba(17, 17, 26, 0.3) 0px 24px 80px;
+}
+
+.title-container {
+    width: 236.25px;
+    height: 99px;
 }
 
 .game-title {
     padding: 10px;
-}
-
-.game-title:hover {
-    background: #21252b;
     border-radius: 7px;
 }
 
@@ -77,13 +68,33 @@ body {
 }
 
 .col .item {
+    border-radius: 7px;
     margin: 10px;
     padding: 20px;
     font-size: 2em;
     font-weight: bold;
-    border-radius: 7px;
 }
 
-.col .item:hover {
+*:focus,
+.col .item:hover,
+.game-title:hover {
+    border-radius: 7px;
+    outline: 0;
     background: #21252b;
+    transform: scale(1.1);
+}
+
+.info a {
+    padding-bottom: 10px;
+    text-decoration-line: underline;
+    text-underline-offset: 8px;
+}
+
+.info a:hover,
+.info a:focus {
+    text-decoration: none;
+    padding: 10px;
+    transform: scale(2);
+    background: #21252b;
+    border-radius: 7px;
 }

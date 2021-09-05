@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const items = document.getElementsByClassName("item");
     const white = "rgb(61, 65, 75)";
-    const black = "rgb(33, 37, 43)";
+    const black = "rgba(19, 21, 24, 0.616)";
     let actualColor = black;
 
     for (let i = 0, len = items.length; i < len; i++) {
