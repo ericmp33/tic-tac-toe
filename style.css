@@ -1,0 +1,32 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Cascadia Code", sans-serif;
+    color: var(--white);
+    transition: all 0.4s;
+}
+
+body {
+    background: var(--black);
+}
+:root {
+    --white: rgb(211, 211, 211);
+    --black: #1e1e1e;
+}
+
+table,
+td {
+    border: 1px solid #333;
+}
+
+thead,
+tfoot {
+    background-color: #333;
+    color: #fff;
+}
