@@ -1,3 +1,4 @@
+/* html reset */
 *,
 *::before,
 *::after {
@@ -12,16 +13,30 @@
     transition: all 0.4s;
 }
 
+/* button reset */
+button,
+input[type="submit"],
+input[type="reset"] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+:root {
+    --white: rgb(211, 211, 211);
+    --black: #2c313a;
+}
+
 body {
     background: var(--black);
     display: flex;
     align-content: center;
     justify-content: center;
     height: 100vh;
-}
-:root {
-    --white: rgb(211, 211, 211);
-    --black: #2C313A;
 }
 
 .interface {
@@ -30,7 +45,18 @@ body {
     align-content: center;
     justify-content: center;
     align-items: center;
+    justify-content: center;
     background-color: #282c34;
+}
+
+.game-title {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.game-title:hover {
+    background: #21252b;
+    border-radius: 7px;
 }
 
 .game-board {
@@ -43,17 +69,14 @@ body {
     flex-direction: row;
 }
 
-.col h1 {
-    padding: 30px;
+.col .item {
+    margin: 10px;
+    padding: 20px;
+    font-size: 2em;
+    font-weight: bold;
+    border-radius: 7px;
 }
 
-table,
-td {
-    border: 1px solid #333;
-}
-
-thead,
-tfoot {
-    background-color: #333;
-    color: #fff;
+.col .item:hover {
+    background: #21252b;
 }
