@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="color-scheme" content="dark" />
-        <title>Tic Tac Toe</title>
+        <title>Tic Tac Toe - by @ericmp33</title>
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/cascadia-code.min.css"
@@ -15,22 +15,34 @@
     </head>
     <body>
         <div class="interface">
-            <h1 class="game-title">Tic tac toe</h1>
+            <h1
+                tabindex="10"
+                class="game-title"
+                title="Check out the source code"
+            >
+                <a
+                    tabindex="-1"
+                    href="https://github.com/ericmp33/tic-tac-toe/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Tic tac toe</a
+                >
+            </h1>
             <div class="game-board">
                 <div class="col col-0">
-                    <button id="item-0" class="item">0</button>
-                    <button id="item-1" class="item">1</button>
-                    <button id="item-2" class="item">2</button>
+                    <button tabindex="1" id="item-0" class="item">0</button>
+                    <button tabindex="2" id="item-1" class="item">1</button>
+                    <button tabindex="3" id="item-2" class="item">2</button>
                 </div>
                 <div class="col col-1">
-                    <button id="item-0" class="item">3</button>
-                    <button id="item-1" class="item">4</button>
-                    <button id="item-2" class="item">5</button>
+                    <button tabindex="4" id="item-3" class="item">3</button>
+                    <button tabindex="5" id="item-4" class="item">4</button>
+                    <button tabindex="6" id="item-5" class="item">5</button>
                 </div>
                 <div class="col col-2">
-                    <button id="item-0" class="item">6</button>
-                    <button id="item-1" class="item">7</button>
-                    <button id="item-2" class="item">8</button>
+                    <button tabindex="7" id="item-6" class="item">6</button>
+                    <button tabindex="8" id="item-7" class="item">7</button>
+                    <button tabindex="9" id="item-8" class="item">8</button>
                 </div>
             </div>
         </div>

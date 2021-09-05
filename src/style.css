@@ -26,6 +26,11 @@ input[type="reset"] {
     outline: inherit;
 }
 
+/* a reset */
+a {
+    text-decoration: none;
+}
+
 :root {
     --white: rgb(211, 211, 211);
     --black: #2c313a;
@@ -36,6 +41,7 @@ body {
     display: flex;
     align-content: center;
     justify-content: center;
+    align-items: center;
     height: 100vh;
 }
 
@@ -47,11 +53,12 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #282c34;
+    padding: 15px;
+    border-radius: 7px;
 }
 
 .game-title {
     padding: 10px;
-    cursor: pointer;
 }
 
 .game-title:hover {
