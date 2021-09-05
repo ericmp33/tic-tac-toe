@@ -14,10 +14,37 @@
 
 body {
     background: var(--black);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    height: 100vh;
 }
 :root {
     --white: rgb(211, 211, 211);
-    --black: #1e1e1e;
+    --black: #2C313A;
+}
+
+.interface {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #282c34;
+}
+
+.game-board {
+    display: flex;
+    flex-direction: column;
+}
+
+.col {
+    display: flex;
+    flex-direction: row;
+}
+
+.col h1 {
+    padding: 30px;
 }
 
 table,
