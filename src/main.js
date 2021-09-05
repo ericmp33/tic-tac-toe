@@ -2,34 +2,39 @@ document.addEventListener("DOMContentLoaded", () => {
     const items = document.getElementsByClassName("item");
     const white = "rgb(61, 65, 75)";
     const black = "rgba(19, 21, 24, 0.616)";
-    let actualColor = black;
-    let actualPlayer = "x";
+    let currentColor = black;
+    let currentPlayer = "x";
 
     for (const item of items) {
         item.addEventListener('click', () => {
             if (item.style.background.length == 0) {
-                item.style.background = actualColor;
-                toggleActualColor();
+                item.style.background = currentColor;
+                toggleCurrentColor();
 
-                item.innerHTML = actualPlayer;
-                toggleActualPlayer();
+                item.innerHTML = currentPlayer;
+                toggleCurrentPlayer();
             }
 
-            if (gameEnd()) console.log("Game ended");
+            checkGameEnd();
         });
     }
 
-    function toggleActualColor() {
-        if (actualColor == white) actualColor = black;
-        else if (actualColor == black) actualColor = white;
+    function toggleCurrentColor() {
+        if (currentColor == white) currentColor = black;
+        else if (currentColor == black) currentColor = white;
     }
 
-    function toggleActualPlayer() {
-        if (actualPlayer == "x") actualPlayer = "o";
-        else if (actualPlayer == "o") actualPlayer = "x";
+    function toggleCurrentPlayer() {
+        if (currentPlayer == "x") currentPlayer = "o";
+        else if (currentPlayer == "o") currentPlayer = "x";
     }
 
-    function gameEnd() {
+    function checkGameEnd() {
+        if (aux("x")) console.log("x won")
+        else if (aux("o")) console.log("o won")
+    }
+
+    function aux(player) {
         const item0 = document.getElementById("item-0").innerHTML;
         const item1 = document.getElementById("item-1").innerHTML;
         const item2 = document.getElementById("item-2").innerHTML;
@@ -40,15 +45,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const item7 = document.getElementById("item-7").innerHTML;
         const item8 = document.getElementById("item-8").innerHTML;
 
-        if (item0 == "x" && item1 == "x" && item2 == "x") return true;
-        if (item3 == "x" && item4 == "x" && item5 == "x") return true;
-        if (item6 == "x" && item7 == "x" && item8 == "x") return true;
+        if (item0 == player && item1 == player && item2 == player) return true;
+        if (item3 == player && item4 == player && item5 == player) return true;
+        if (item6 == player && item7 == player && item8 == player) return true;
 
-        if (item0 == "x" && item3 == "x" && item6 == "x") return true;
-        if (item1 == "x" && item4 == "x" && item7 == "x") return true;
-        if (item2 == "x" && item5 == "x" && item8 == "x") return true;
+        if (item0 == player && item3 == player && item6 == player) return true;
+        if (item1 == player && item4 == player && item7 == player) return true;
+        if (item2 == player && item5 == player && item8 == player) return true;
 
-        if (item0 == "x" && item4 == "x" && item8 == "x") return true;
-        if (item2 == "x" && item4 == "x" && item6 == "x") return true;
+        if (item0 == player && item4 == player && item8 == player) return true;
+        if (item2 == player && item4 == player && item6 == player) return true;
     }
 });

@@ -73,9 +73,10 @@ body {
     font-weight: bold;
 }
 
-*:focus,
-.col .item:hover,
-.game-title:hover {
+.title-container a:focus,
+.title-container a:hover,
+.col a:focus,
+.col a:hover {
     outline: 0;
     background: #21252b;
     transform: scale(1.1);
@@ -89,8 +90,9 @@ body {
 
 .info a:hover,
 .info a:focus {
+    outline: 0;
+    background: #21252b;
+    transform: scale(2);
     text-decoration: none;
     padding: 10px;
-    transform: scale(2);
-    background: #21252b;
 }
