@@ -47,15 +47,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const item7 = document.getElementById("item-7");
         const item8 = document.getElementById("item-8");
 
-        const item0Inner = document.getElementById("item-0").innerHTML;
-        const item1Inner = document.getElementById("item-1").innerHTML;
-        const item2Inner = document.getElementById("item-2").innerHTML;
-        const item3Inner = document.getElementById("item-3").innerHTML;
-        const item4Inner = document.getElementById("item-4").innerHTML;
-        const item5Inner = document.getElementById("item-5").innerHTML;
-        const item6Inner = document.getElementById("item-6").innerHTML;
-        const item7Inner = document.getElementById("item-7").innerHTML;
-        const item8Inner = document.getElementById("item-8").innerHTML;
+        const item0Inner = item0.innerHTML;
+        const item1Inner = item1.innerHTML;
+        const item2Inner = item2.innerHTML;
+        const item3Inner = item3.innerHTML;
+        const item4Inner = item4.innerHTML;
+        const item5Inner = item5.innerHTML;
+        const item6Inner = item6.innerHTML;
+        const item7Inner = item7.innerHTML;
+        const item8Inner = item8.innerHTML;
 
         if (item0Inner == p && item1Inner == p && item2Inner == p) return [true, p, item0.id, item1.id, item2.id];
         if (item3Inner == p && item4Inner == p && item5Inner == p) return [true, p, item3.id, item4.id, item5.id];
@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (item0Inner == p && item4Inner == p && item8Inner == p) return [true, p, item0.id, item4.id, item8.id];
         if (item2Inner == p && item4Inner == p && item6Inner == p) return [true, p, item2.id, item4.id, item6.id];
+
         return false;
     }
 
