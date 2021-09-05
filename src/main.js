@@ -4,14 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const black = "rgba(19, 21, 24, 0.616)";
     let actualColor = black;
 
-    for (let i = 0, len = items.length; i < len; i++) {
-        items[i].addEventListener('click', () => {
-            if (items[i].style.background.length == 0) {
-                items[i].style.background = actualColor;
+    for (const item of items) {
+        item.addEventListener('click', () => {
+            if (item.style.background.length == 0) {
+                item.style.background = actualColor;
                 toggleActualColor();
             }
-            
-            items[i].click();
+
+            item.click();
             checkEndGame();
         });
     }
