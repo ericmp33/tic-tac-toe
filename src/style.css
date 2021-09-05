@@ -10,6 +10,7 @@
     font-family: "Cascadia Code", sans-serif;
     color: var(--white);
     transition: all 0.4s;
+    border-radius: 7px;
 }
 
 a {
@@ -42,7 +43,6 @@ body {
     flex-direction: column;
     background-color: #282c34;
     padding: 15px;
-    border-radius: 7px;
     box-shadow: rgba(17, 17, 26, 0.3) 0px 8px 24px,
         rgba(17, 17, 26, 0.3) 0px 16px 56px, rgba(17, 17, 26, 0.3) 0px 24px 80px;
 }
@@ -54,7 +54,6 @@ body {
 
 .game-title {
     padding: 10px;
-    border-radius: 7px;
 }
 
 .game-board {
@@ -68,7 +67,6 @@ body {
 }
 
 .col .item {
-    border-radius: 7px;
     margin: 10px;
     padding: 20px;
     font-size: 2em;
@@ -78,7 +76,6 @@ body {
 *:focus,
 .col .item:hover,
 .game-title:hover {
-    border-radius: 7px;
     outline: 0;
     background: #21252b;
     transform: scale(1.1);
@@ -96,5 +93,4 @@ body {
     padding: 10px;
     transform: scale(2);
     background: #21252b;
-    border-radius: 7px;
 }
