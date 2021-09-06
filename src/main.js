@@ -55,37 +55,37 @@ function checkGameEnd() {
     }
 }
 
-function aux(p) { // p = player ("x" or "o")
-    const item0 = document.getElementById("item-0");
-    const item1 = document.getElementById("item-1");
-    const item2 = document.getElementById("item-2");
-    const item3 = document.getElementById("item-3");
-    const item4 = document.getElementById("item-4");
-    const item5 = document.getElementById("item-5");
-    const item6 = document.getElementById("item-6");
-    const item7 = document.getElementById("item-7");
-    const item8 = document.getElementById("item-8");
+function aux(p) {
+    const i0 = document.getElementById("item-0");
+    const i1 = document.getElementById("item-1");
+    const i2 = document.getElementById("item-2");
+    const i3 = document.getElementById("item-3");
+    const i4 = document.getElementById("item-4");
+    const i5 = document.getElementById("item-5");
+    const i6 = document.getElementById("item-6");
+    const i7 = document.getElementById("item-7");
+    const i8 = document.getElementById("item-8");
 
-    const item0Inner = item0.innerHTML;
-    const item1Inner = item1.innerHTML;
-    const item2Inner = item2.innerHTML;
-    const item3Inner = item3.innerHTML;
-    const item4Inner = item4.innerHTML;
-    const item5Inner = item5.innerHTML;
-    const item6Inner = item6.innerHTML;
-    const item7Inner = item7.innerHTML;
-    const item8Inner = item8.innerHTML;
+    const i0Inner = i0.innerHTML;
+    const i1Inner = i1.innerHTML;
+    const i2Inner = i2.innerHTML;
+    const i3Inner = i3.innerHTML;
+    const i4Inner = i4.innerHTML;
+    const i5Inner = i5.innerHTML;
+    const i6Inner = i6.innerHTML;
+    const i7Inner = i7.innerHTML;
+    const i8Inner = i8.innerHTML;
 
-    if (item0Inner == p && item1Inner == p && item2Inner == p) return [true, p, item0.id, item1.id, item2.id];
-    if (item3Inner == p && item4Inner == p && item5Inner == p) return [true, p, item3.id, item4.id, item5.id];
-    if (item6Inner == p && item7Inner == p && item8Inner == p) return [true, p, item6.id, item7.id, item8.id];
+    if (i0Inner == p && i1Inner == p && i2Inner == p) return [true, p, i0.id, i1.id, i2.id];
+    if (i3Inner == p && i4Inner == p && i5Inner == p) return [true, p, i3.id, i4.id, i5.id];
+    if (i6Inner == p && i7Inner == p && i8Inner == p) return [true, p, i6.id, i7.id, i8.id];
 
-    if (item0Inner == p && item3Inner == p && item6Inner == p) return [true, p, item0.id, item3.id, item6.id];
-    if (item1Inner == p && item4Inner == p && item7Inner == p) return [true, p, item1.id, item4.id, item7.id];
-    if (item2Inner == p && item5Inner == p && item8Inner == p) return [true, p, item2.id, item5.id, item8.id];
+    if (i0Inner == p && i3Inner == p && i6Inner == p) return [true, p, i0.id, i3.id, i6.id];
+    if (i1Inner == p && i4Inner == p && i7Inner == p) return [true, p, i1.id, i4.id, i7.id];
+    if (i2Inner == p && i5Inner == p && i8Inner == p) return [true, p, i2.id, i5.id, i8.id];
 
-    if (item0Inner == p && item4Inner == p && item8Inner == p) return [true, p, item0.id, item4.id, item8.id];
-    if (item2Inner == p && item4Inner == p && item6Inner == p) return [true, p, item2.id, item4.id, item6.id];
+    if (i0Inner == p && i4Inner == p && i8Inner == p) return [true, p, i0.id, i4.id, i8.id];
+    if (i2Inner == p && i4Inner == p && i6Inner == p) return [true, p, i2.id, i4.id, i6.id];
 
     return false;
 }
@@ -115,3 +115,6 @@ function checkAllFilled() {
 }
 
 // todo: refactor a lot (:
+// todo refactor css, html too
+// todo: add a space " " between p and a of output game
+// todo: check if ctrl enter keeps spawning a new page
