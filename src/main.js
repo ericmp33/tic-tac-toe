@@ -1,14 +1,14 @@
-var items = document.getElementsByClassName("item");
-var white = "rgb(61, 65, 75)";
-var black = "rgba(19, 21, 24, 0.616)";
-var currentColor = black;
-var currentPlayer = "x";
+const white = "rgb(61, 65, 75)";
+const black = "rgba(19, 21, 24, 0.616)";
 var gameFinised = false;
+var items;
+var currentColor;
+var currentPlayer;
+var winnerOutput;
 
 document.addEventListener("DOMContentLoaded", () => {
     items = document.getElementsByClassName("item");
-    white = "rgb(61, 65, 75)";
-    black = "rgba(19, 21, 24, 0.616)";
+    winnerOutput = document.getElementById("winner-output");
     currentColor = black;
     currentPlayer = "x";
 
@@ -43,7 +43,13 @@ function checkGameEnd() {
     if (aux("x")[0]) winner = aux("x")[1];
     else if (aux("o")[0]) winner = aux("o")[1];
 
-    if (typeof winner !== "undefined") {
+    if (checkAllFilled()) {
+        winnerOutput.innerHTML = "Draw!";
+
+        const gameOutput = document.getElementsByClassName("game-output");
+        gameOutput[0].classList.remove("no-display");
+        gameOutput[0].classList.add("display");
+    } else if (typeof winner !== "undefined") {
         auxWinner(winner);
         gameFinised = true;
     }
@@ -85,7 +91,11 @@ function aux(p) { // p = player ("x" or "o")
 }
 
 function auxWinner(winner) {
-    console.log(aux(winner)[1].toUpperCase() + " won the game");
+    winnerOutput.innerHTML = aux(winner)[1].toUpperCase() + " won the game.";
+
+    const gameOutput = document.getElementsByClassName("game-output");
+    gameOutput[0].classList.remove("no-display");
+    gameOutput[0].classList.add("display");
 
     let arr = [
         document.getElementById(aux(winner)[2]),
@@ -96,4 +106,12 @@ function auxWinner(winner) {
     arr.forEach(item => item.style.background = "rgb(29 195 72 / 58%)");
 }
 
-// todo: ask for restart if no one wins -> https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_popup
+// returns true if all the items are filled with white or black
+function checkAllFilled() {
+    for (const item of items) {
+        if (item.innerHTML == "_") return false;
+    }
+    return true;
+}
+
+// todo: refactor a lot (:

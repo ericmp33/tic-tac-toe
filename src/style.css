@@ -36,7 +36,7 @@ body {
 .flex-container {
     height: 100vh;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .interface {
@@ -45,6 +45,7 @@ body {
     padding: 15px;
     box-shadow: rgba(17, 17, 26, 0.3) 0px 8px 24px,
         rgba(17, 17, 26, 0.3) 0px 16px 56px, rgba(17, 17, 26, 0.3) 0px 24px 80px;
+    margin-bottom: 100px;
 }
 
 .title-container {
@@ -76,23 +77,50 @@ body {
 .title-container a:focus,
 .title-container a:hover,
 .col a:focus,
-.col a:hover {
+.col a:hover,
+.game-output a:focus,
+.game-output a:hover {
     outline: 0;
     background: #21252b;
     transform: scale(1.1);
 }
 
-.info a {
+.info a,
+.game-output a {
     padding-bottom: 10px;
     text-decoration-line: underline;
     text-underline-offset: 8px;
 }
 
 .info a:hover,
-.info a:focus {
+.info a:focus,
+.game-output a:hover,
+.game-output a:focus {
     outline: 0;
     background: #21252b;
     transform: scale(2);
     text-decoration: none;
     padding: 10px;
+}
+
+.game-output {
+    margin: 15px 0;
+}
+
+/* mobile hover (todo -> check if it works) */
+.col .item:hover,
+.col .item:active {
+    border-radius: 7px;
+}
+
+#winner-output {
+    display: inline-block;
+}
+
+.no-display {
+    display: none;
+}
+
+.display {
+    display: inherit;
 }
