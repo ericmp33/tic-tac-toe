@@ -14,24 +14,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (const item of items) {
         item.addEventListener('click', () => {
-            if (!gameFinised) {
-                if (!hasSameBackground(item.style.background)) {
-                    item.style.background = currentColor;
-                    toggleCurrentColor();
+            if (!gameFinised && hasDifBackground(item.style.background)) {
+                item.style.background = currentColor;
+                toggleCurrentColor();
 
-                    item.innerHTML = currentPlayer;
-                    toggleCurrentPlayer();
+                item.innerHTML = currentPlayer;
+                toggleCurrentPlayer();
 
-                    checkGameEnd();
-                }
+                checkGameEnd();
             }
         });
     }
 });
 
-// returns true if background is diferent than black or white
-function hasSameBackground(background) {
-    return background == black || background == white;
+// returns true if parsed background is diferent than black or white
+function hasDifBackground(background) {
+    return !(background == black || background == white);
 }
 
 // toggles the current color
@@ -46,32 +44,47 @@ function toggleCurrentPlayer() {
     else if (currentPlayer == "o") currentPlayer = "x";
 }
 
-// sets gameFinised to true if the game must end
+// if the game must end sets gameFinised to true 
 function checkGameEnd() {
+    let condition1 = trheeInARow("x")[0] || trheeInARow("o")[0];
+    let condition2 = allItemsFilled();
+
     // if a player does three in a row, game must end
-    if (trheeInARow("x")[0] || trheeInARow("o")[0]) {
+    if (condition1) {
         let winner;
         if (trheeInARow("x")[0]) winner = trheeInARow("x")[1];
         else if (trheeInARow("o")[0]) winner = trheeInARow("o")[1];
 
-        if (winner == "x" || winner == "o") {
-            setWinner(winner);
-            gameFinised = true;
-        }
+        winnerOutput.innerHTML = trheeInARow(winner)[1].toUpperCase() + " won the game.";
+        colorizeGreen(winner);
+        gameFinised = true;
     }
 
     // else, if all items are filled, game must end
-    else if (allItemsFilled()) {
+    else if (condition2) {
         winnerOutput.innerHTML = "Draw!";
+        gameFinised = true;
+    }
 
+    // common code if one of the conditions is true
+    if (condition1 || condition2) {
         const gameOutput = document.getElementsByClassName("game-output");
         gameOutput[0].classList.remove("no-display");
         gameOutput[0].classList.add("display");
-        gameFinised = true;
     }
 }
 
-// returns false if one of the items is "_", which means that not all items are filled yet
+// colorizes to green the items that made three in a row
+function colorizeGreen(winner) {
+    [
+        document.getElementById(trheeInARow(winner)[2]),
+        document.getElementById(trheeInARow(winner)[3]),
+        document.getElementById(trheeInARow(winner)[4])
+    ]
+        .forEach(item => item.style.background = "rgb(29 195 72 / 58%)");
+}
+
+// returns true if all items are different than "_", which means all items are filled
 function allItemsFilled() {
     for (const item of items) {
         if (item.innerHTML == "_") return false;
@@ -79,7 +92,7 @@ function allItemsFilled() {
     return true;
 }
 
-// the first index of the array returns if there is three in a row or not. if it's true, also returns the items that made three in a row
+// returns true if there is three in a row. if true, also returns which items made it
 function trheeInARow(p) {
     const i0 = document.getElementById("item-0");
     const i1 = document.getElementById("item-1");
@@ -101,34 +114,24 @@ function trheeInARow(p) {
     const i7Inner = i7.innerHTML;
     const i8Inner = i8.innerHTML;
 
-    if (i0Inner == p && i1Inner == p && i2Inner == p) return [true, p, i0.id, i1.id, i2.id];
-    if (i3Inner == p && i4Inner == p && i5Inner == p) return [true, p, i3.id, i4.id, i5.id];
-    if (i6Inner == p && i7Inner == p && i8Inner == p) return [true, p, i6.id, i7.id, i8.id];
+    if (trheeRowAux(i0Inner, i1Inner, i2Inner, p)) return [true, p, i0.id, i1.id, i2.id];
+    if (trheeRowAux(i0Inner, i1Inner, i2Inner, p)) return [true, p, i0.id, i1.id, i2.id];
+    if (trheeRowAux(i3Inner, i4Inner, i5Inner, p)) return [true, p, i3.id, i4.id, i5.id];
+    if (trheeRowAux(i6Inner, i7Inner, i8Inner, p)) return [true, p, i6.id, i7.id, i8.id];
 
-    if (i0Inner == p && i3Inner == p && i6Inner == p) return [true, p, i0.id, i3.id, i6.id];
-    if (i1Inner == p && i4Inner == p && i7Inner == p) return [true, p, i1.id, i4.id, i7.id];
-    if (i2Inner == p && i5Inner == p && i8Inner == p) return [true, p, i2.id, i5.id, i8.id];
+    if (trheeRowAux(i0Inner, i3Inner, i6Inner, p)) return [true, p, i0.id, i3.id, i6.id];
+    if (trheeRowAux(i1Inner, i4Inner, i7Inner, p)) return [true, p, i1.id, i4.id, i7.id];
+    if (trheeRowAux(i2Inner, i5Inner, i8Inner, p)) return [true, p, i2.id, i5.id, i8.id];
 
-    if (i0Inner == p && i4Inner == p && i8Inner == p) return [true, p, i0.id, i4.id, i8.id];
-    if (i2Inner == p && i4Inner == p && i6Inner == p) return [true, p, i2.id, i4.id, i6.id];
+    if (trheeRowAux(i0Inner, i4Inner, i8Inner, p)) return [true, p, i0.id, i4.id, i8.id];
+    if (trheeRowAux(i2Inner, i4Inner, i6Inner, p)) return [true, p, i2.id, i4.id, i6.id];
 
     return false;
 }
 
-function setWinner(winner) {
-    winnerOutput.innerHTML = trheeInARow(winner)[1].toUpperCase() + " won the game.";
-
-    const gameOutput = document.getElementsByClassName("game-output");
-    gameOutput[0].classList.remove("no-display");
-    gameOutput[0].classList.add("display");
-
-    let arr = [
-        document.getElementById(trheeInARow(winner)[2]),
-        document.getElementById(trheeInARow(winner)[3]),
-        document.getElementById(trheeInARow(winner)[4])
-    ];
-
-    arr.forEach(item => item.style.background = "rgb(29 195 72 / 58%)");
+// returns true if all items are equals to player
+function trheeRowAux(itemA, itemB, itemC, player) {
+    return itemA == player && itemB == player && itemC == player;
 }
 
 // todo: add a space " " between p and a of output game
