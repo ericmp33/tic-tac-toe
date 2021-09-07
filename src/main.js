@@ -5,14 +5,17 @@ var gameFinised = false;
 var items;
 var currentColor;
 var currentPlayer;
+var gameOutput;
 var winnerOutput;
 let playAgainTrigger;
 
 document.addEventListener("DOMContentLoaded", () => {
     items = document.getElementsByClassName("item");
+    gameOutput = document.getElementById("game-output");
     winnerOutput = document.getElementById("winner-output");
     currentColor = black;
     currentPlayer = "x";
+    playAgainTrigger = document.getElementById("play-again-trigger");
 
     for (const item of items) {
         item.addEventListener('click', () => {
@@ -27,6 +30,19 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    playAgainTrigger.addEventListener('click', () => {
+        winnerOutput.innerHTML = "";
+        gameOutput.classList.remove("display");
+        gameOutput.classList.add("no-display");
+
+        for (const item of items) {
+            item.style.background = "";
+            item.innerHTML = "_";
+        }
+
+        gameFinised = false;
+    });
 });
 
 // returns true if parsed background is diferent than black or white
@@ -69,9 +85,8 @@ function checkGameEnd() {
 
     // common code if one of the conditions is true
     if (condition1 || condition2) {
-        const gameOutput = document.getElementsByClassName("game-output");
-        gameOutput[0].classList.remove("no-display");
-        gameOutput[0].classList.add("display");
+        gameOutput.classList.remove("no-display");
+        gameOutput.classList.add("display");
     }
 }
 
@@ -134,5 +149,3 @@ function trheeInARow(p) {
 function trheeRowAux(itemA, itemB, itemC, p) {
     return itemA == p && itemB == p && itemC == p;
 }
-
-// todo: instead of reloading page when restart game, reset it all so reload page is not needed
