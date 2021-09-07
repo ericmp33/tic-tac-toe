@@ -34,7 +34,7 @@ body {
 }
 
 .flex-container {
-    height: 100vh;
+    min-height: 100vh;
     flex-direction: column;
     justify-content: space-evenly;
 }
@@ -45,7 +45,7 @@ body {
     padding: 15px;
     box-shadow: rgba(17, 17, 26, 0.3) 0px 8px 24px,
         rgba(17, 17, 26, 0.3) 0px 16px 56px, rgba(17, 17, 26, 0.3) 0px 24px 80px;
-    margin-bottom: 40px;
+    margin: 20px 20px 60px 20px;
 }
 
 .title-container {
@@ -117,8 +117,5 @@ body {
 
 .p-info {
     text-align: center;
-}
-
-.p-info-0 {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
