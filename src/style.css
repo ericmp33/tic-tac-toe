@@ -107,7 +107,7 @@ body {
     margin: 15px 0;
 }
 
-#winner-output {
+.winner-output {
     display: inline-block;
 }
 
