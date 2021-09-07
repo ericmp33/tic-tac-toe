@@ -12,10 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const desktopDiv = document.getElementById("info-desktop");
     const mobileDiv = document.getElementById("info-mobile");
 
-    // first check window width
+    // first check
     responsiveDivCheck(desktopDiv, mobileDiv);
 
-    // if window width changes, fit code to it
+    // if window width changes, fit code to it (event listener check)
     window.addEventListener('resize', () => {
         responsiveDivCheck(desktopDiv, mobileDiv);
     });
