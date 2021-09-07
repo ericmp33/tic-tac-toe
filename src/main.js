@@ -1,10 +1,12 @@
 const white = "rgb(61, 65, 75)";
 const black = "rgba(19, 21, 24, 0.616)";
+const green = "rgb(29 195 72 / 58%)";
 var gameFinised = false;
 var items;
 var currentColor;
 var currentPlayer;
 var winnerOutput;
+let playAgainTrigger;
 
 document.addEventListener("DOMContentLoaded", () => {
     items = document.getElementsByClassName("item");
@@ -46,17 +48,16 @@ function toggleCurrentPlayer() {
 
 // if the game must end sets gameFinised to true 
 function checkGameEnd() {
-    let condition1 = trheeInARow("x")[0] || trheeInARow("o")[0];
+    let arrThreeInARow = trheeInARow("x") || trheeInARow("o");
+    let condition1 = arrThreeInARow[0];
     let condition2 = allItemsFilled();
 
     // if a player does three in a row, game must end
     if (condition1) {
-        let winner;
-        if (trheeInARow("x")[0]) winner = trheeInARow("x")[1];
-        else if (trheeInARow("o")[0]) winner = trheeInARow("o")[1];
+        let winner = arrThreeInARow[1];
 
-        winnerOutput.innerHTML = trheeInARow(winner)[1].toUpperCase() + " won the game.";
-        colorizeGreen(winner);
+        winnerOutput.innerHTML = winner.toUpperCase() + " won!";
+        colorizeGreen(arrThreeInARow);
         gameFinised = true;
     }
 
@@ -75,13 +76,13 @@ function checkGameEnd() {
 }
 
 // colorizes to green the items that made three in a row
-function colorizeGreen(winner) {
+function colorizeGreen(arrThreeInARow) {
     [
-        document.getElementById(trheeInARow(winner)[2]),
-        document.getElementById(trheeInARow(winner)[3]),
-        document.getElementById(trheeInARow(winner)[4])
+        document.getElementById(arrThreeInARow[2]),
+        document.getElementById(arrThreeInARow[3]),
+        document.getElementById(arrThreeInARow[4])
     ]
-        .forEach(item => item.style.background = "rgb(29 195 72 / 58%)");
+        .forEach(item => item.style.background = green);
 }
 
 // returns true if all items are different than "_", which means all items are filled
@@ -130,8 +131,8 @@ function trheeInARow(p) {
 }
 
 // returns true if all items are equals to player
-function trheeRowAux(itemA, itemB, itemC, player) {
-    return itemA == player && itemB == player && itemC == player;
+function trheeRowAux(itemA, itemB, itemC, p) {
+    return itemA == p && itemB == p && itemC == p;
 }
 
-// todo: add a space " " between p and a of output game
+// todo: instead of reloading page when restart game, reset it all so reload page is not needed
