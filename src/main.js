@@ -9,13 +9,24 @@ var gameOutput;
 var winnerOutput;
 
 document.addEventListener("DOMContentLoaded", () => {
+    const desktopDiv = document.getElementById("info-desktop");
+    const mobileDiv = document.getElementById("info-mobile");
+
+    // first check window width
+    responsiveDivCheck(desktopDiv, mobileDiv);
+
+    // if window width changes, fit code to it
+    window.addEventListener('resize', () => {
+        responsiveDivCheck(desktopDiv, mobileDiv);
+    });
+
     items = document.getElementsByClassName("item");
     gameOutput = document.getElementById("game-output");
     winnerOutput = document.getElementById("winner-output");
     currentColor = black;
     currentPlayer = "x";
-    let playAgainTrigger = document.getElementById("play-again-trigger");
 
+    // if any game item is clicked, do game logic
     for (const item of items) {
         item.addEventListener('click', () => {
             if (!gameFinised && hasDifBackground(item.style.background)) {
@@ -30,10 +41,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    playAgainTrigger.addEventListener('click', () => {
+    const playAgain = document.getElementById("play-again-trigger");
+
+    // if play again is clicked
+    playAgain.addEventListener('click', () => {
+        // reset all elements
         winnerOutput.innerHTML = "";
-        gameOutput.classList.remove("display");
-        gameOutput.classList.add("no-display");
+        gameOutput.classList.toggle("display-none");
 
         for (const item of items) {
             item.style.background = "";
@@ -41,8 +55,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         gameFinised = false;
+        currentColor = black;
+        currentPlayer = "x";
     });
 });
+
+// chooses which div has to appear, desktop or mobile one
+function responsiveDivCheck(desktopDiv, mobileDiv) {
+    let windowWidth = window.innerWidth;
+
+    if (windowWidth >= 386 && desktopDiv.classList.contains("display-none") ||
+        windowWidth < 386 && mobileDiv.classList.contains("display-none")) {
+        desktopDiv.classList.toggle("display-none");
+        mobileDiv.classList.toggle("display-none");
+    }
+}
 
 // returns true if parsed background is diferent than black or white
 function hasDifBackground(background) {
@@ -84,8 +111,7 @@ function checkGameEnd() {
 
     // common code if one of the conditions is true
     if (condition1 || condition2) {
-        gameOutput.classList.remove("no-display");
-        gameOutput.classList.add("display");
+        gameOutput.classList.toggle("display-none");
     }
 }
 

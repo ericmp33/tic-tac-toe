@@ -36,7 +36,7 @@ body {
 .flex-container {
     height: 100vh;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .interface {
@@ -45,7 +45,7 @@ body {
     padding: 15px;
     box-shadow: rgba(17, 17, 26, 0.3) 0px 8px 24px,
         rgba(17, 17, 26, 0.3) 0px 16px 56px, rgba(17, 17, 26, 0.3) 0px 24px 80px;
-    margin-bottom: 100px;
+    margin-bottom: 40px;
 }
 
 .title-container {
@@ -111,10 +111,14 @@ body {
     display: inline-block;
 }
 
-.no-display {
+.display-none {
     display: none;
 }
 
-.display {
-    display: inherit;
+.p-info {
+    text-align: center;
+}
+
+.p-info-0 {
+    margin-bottom: 20px;
 }
