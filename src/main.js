@@ -1,5 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-
 const white = "rgb(61, 65, 75)";
 const black = "rgba(19, 21, 24, 0.616)";
 const green = "rgb(29 195 72 / 58%)";
@@ -10,6 +8,7 @@ var currentPlayer;
 var gameOutput;
 var winnerOutput;
 
+document.addEventListener("DOMContentLoaded", () => {
     const desktopDiv = document.getElementById("info-desktop");
     const mobileDiv = document.getElementById("info-mobile");
 
@@ -59,6 +58,7 @@ var winnerOutput;
         currentColor = black;
         currentPlayer = "x";
     });
+});
 
 // chooses which div has to appear, desktop or mobile one
 function responsiveDivCheck(desktopDiv, mobileDiv) {
@@ -174,5 +174,3 @@ function trheeInARow(p) {
 function trheeRowAux(itemA, itemB, itemC, p) {
     return itemA == p && itemB == p && itemC == p;
 }
-
-});
