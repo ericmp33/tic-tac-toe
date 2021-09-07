@@ -15,47 +15,72 @@ document.addEventListener("DOMContentLoaded", () => {
     for (const item of items) {
         item.addEventListener('click', () => {
             if (!gameFinised) {
-                if (item.style.background.length == 0) {
+                if (!hasSameBackground(item.style.background)) {
                     item.style.background = currentColor;
                     toggleCurrentColor();
 
                     item.innerHTML = currentPlayer;
                     toggleCurrentPlayer();
+
+                    checkGameEnd();
                 }
-                checkGameEnd();
             }
         });
     }
 });
 
+// returns true if background is diferent than black or white
+function hasSameBackground(background) {
+    return background == black || background == white;
+}
+
+// toggles the current color
 function toggleCurrentColor() {
     if (currentColor == white) currentColor = black;
     else if (currentColor == black) currentColor = white;
 }
 
+// toggles the current player
 function toggleCurrentPlayer() {
     if (currentPlayer == "x") currentPlayer = "o";
     else if (currentPlayer == "o") currentPlayer = "x";
 }
 
+// sets gameFinised to true if the game must end
 function checkGameEnd() {
-    let winner;
-    if (aux("x")[0]) winner = aux("x")[1];
-    else if (aux("o")[0]) winner = aux("o")[1];
+    // if a player does three in a row, game must end
+    if (trheeInARow("x")[0] || trheeInARow("o")[0]) {
+        let winner;
+        if (trheeInARow("x")[0]) winner = trheeInARow("x")[1];
+        else if (trheeInARow("o")[0]) winner = trheeInARow("o")[1];
 
-    if (checkAllFilled()) {
+        if (winner == "x" || winner == "o") {
+            setWinner(winner);
+            gameFinised = true;
+        }
+    }
+
+    // else, if all items are filled, game must end
+    else if (allItemsFilled()) {
         winnerOutput.innerHTML = "Draw!";
 
         const gameOutput = document.getElementsByClassName("game-output");
         gameOutput[0].classList.remove("no-display");
         gameOutput[0].classList.add("display");
-    } else if (typeof winner !== "undefined") {
-        auxWinner(winner);
         gameFinised = true;
     }
 }
 
-function aux(p) {
+// returns false if one of the items is "_", which means that not all items are filled yet
+function allItemsFilled() {
+    for (const item of items) {
+        if (item.innerHTML == "_") return false;
+    }
+    return true;
+}
+
+// the first index of the array returns if there is three in a row or not. if it's true, also returns the items that made three in a row
+function trheeInARow(p) {
     const i0 = document.getElementById("item-0");
     const i1 = document.getElementById("item-1");
     const i2 = document.getElementById("item-2");
@@ -90,31 +115,20 @@ function aux(p) {
     return false;
 }
 
-function auxWinner(winner) {
-    winnerOutput.innerHTML = aux(winner)[1].toUpperCase() + " won the game.";
+function setWinner(winner) {
+    winnerOutput.innerHTML = trheeInARow(winner)[1].toUpperCase() + " won the game.";
 
     const gameOutput = document.getElementsByClassName("game-output");
     gameOutput[0].classList.remove("no-display");
     gameOutput[0].classList.add("display");
 
     let arr = [
-        document.getElementById(aux(winner)[2]),
-        document.getElementById(aux(winner)[3]),
-        document.getElementById(aux(winner)[4])
+        document.getElementById(trheeInARow(winner)[2]),
+        document.getElementById(trheeInARow(winner)[3]),
+        document.getElementById(trheeInARow(winner)[4])
     ];
 
     arr.forEach(item => item.style.background = "rgb(29 195 72 / 58%)");
 }
 
-// returns true if all the items are filled with white or black
-function checkAllFilled() {
-    for (const item of items) {
-        if (item.innerHTML == "_") return false;
-    }
-    return true;
-}
-
-// todo: refactor a lot (:
-// todo refactor css, html too
 // todo: add a space " " between p and a of output game
-// todo: check if ctrl enter keeps spawning a new page

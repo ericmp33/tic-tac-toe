@@ -107,12 +107,6 @@ body {
     margin: 15px 0;
 }
 
-/* mobile hover (todo -> check if it works) */
-.col .item:hover,
-.col .item:active {
-    border-radius: 7px;
-}
-
 #winner-output {
     display: inline-block;
 }
