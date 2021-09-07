@@ -7,7 +7,6 @@ var currentColor;
 var currentPlayer;
 var gameOutput;
 var winnerOutput;
-let playAgainTrigger;
 
 document.addEventListener("DOMContentLoaded", () => {
     items = document.getElementsByClassName("item");
@@ -15,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     winnerOutput = document.getElementById("winner-output");
     currentColor = black;
     currentPlayer = "x";
-    playAgainTrigger = document.getElementById("play-again-trigger");
+    let playAgainTrigger = document.getElementById("play-again-trigger");
 
     for (const item of items) {
         item.addEventListener('click', () => {
