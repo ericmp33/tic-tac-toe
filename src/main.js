@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     items = document.getElementsByClassName("item");
     gameOutput = document.getElementById("game-output");
-    winnerOutput = document.getElementById("winner-output");
+    winnerOutput = document.getElementById("winner");
     currentColor = black;
     currentPlayer = "x";
 

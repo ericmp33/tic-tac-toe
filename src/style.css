@@ -26,7 +26,7 @@ body {
     background: var(--black);
 }
 
-.flex-center-three {
+.flex-center {
     display: flex;
     align-content: center;
     justify-content: center;
@@ -53,21 +53,21 @@ body {
     height: 99px;
 }
 
-.game-title {
+.title {
     padding: 10px;
 }
 
-.game-board {
+.board {
     display: flex;
     flex-direction: column;
 }
 
-.col {
+.row {
     display: flex;
     flex-direction: row;
 }
 
-.col .item {
+.item {
     margin: 10px;
     padding: 20px;
     font-size: 2em;
@@ -76,8 +76,8 @@ body {
 
 .title-container a:focus,
 .title-container a:hover,
-.col a:focus,
-.col a:hover,
+.row a:focus,
+.row a:hover,
 .game-output a:focus,
 .game-output a:hover {
     outline: 0;
@@ -107,7 +107,7 @@ body {
     margin: 15px 0;
 }
 
-.winner-output {
+.winner {
     display: inline-block;
 }
 

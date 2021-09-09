@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="color-scheme" content="dark" />
+        <meta name="rowor-scheme" content="dark" />
         <link rel="icon" type="image/png" href="./img/favicon.png" />
         <title>Minimalist Tic Tac Toe</title>
         <link
@@ -15,25 +15,25 @@
         <script src="main.js"></script>
     </head>
     <body>
-        <div class="flex-center-three flex-container">
-            <div class="interface flex-center-three">
-                <div class="flex-center-three title-container">
+        <div class="flex-center flex-container">
+            <div class="flex-center interface">
+                <div class="flex-center title-container">
                     <a href="#">
-                        <h1 class="game-title">Tic tac toe</h1>
+                        <h1 class="title">Tic tac toe</h1>
                     </a>
                 </div>
-                <div class="game-board">
-                    <div class="col">
+                <div class="board">
+                    <div class="row">
                         <a href="#" id="item-0" class="item">_</a>
                         <a href="#" id="item-1" class="item">_</a>
                         <a href="#" id="item-2" class="item">_</a>
                     </div>
-                    <div class="col">
+                    <div class="row">
                         <a href="#" id="item-3" class="item">_</a>
                         <a href="#" id="item-4" class="item">_</a>
                         <a href="#" id="item-5" class="item">_</a>
                     </div>
-                    <div class="col">
+                    <div class="row">
                         <a href="#" id="item-6" class="item">_</a>
                         <a href="#" id="item-7" class="item">_</a>
                         <a href="#" id="item-8" class="item">_</a>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="game-output display-none" id="game-output">
                     <div>
-                        <p id="winner-output" class="winner-output"></p>
+                        <p id="winner" class="winner"></p>
                         <a id="play-again-trigger" href="#">Play again</a>.
                     </div>
                 </div>
