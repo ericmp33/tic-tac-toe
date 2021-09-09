@@ -1,7 +1,7 @@
 const white = "rgb(61, 65, 75)";
 const black = "rgba(19, 21, 24, 0.616)";
 const green = "rgb(29 195 72 / 58%)";
-var gameFinised = false;
+var gameFinished = false;
 var items;
 var currentColor;
 var currentPlayer;
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // if any game item is clicked, do game logic
     for (const item of items) {
         item.addEventListener('click', () => {
-            if (!gameFinised && hasDifBackground(item.style.background)) {
+            if (!gameFinished && hasDifBackground(item.style.background)) {
                 item.style.background = currentColor;
                 toggleCurrentColor();
 
@@ -41,23 +41,29 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    const playAgain = document.getElementById("play-again-trigger");
 
-    // if play again is clicked
-    playAgain.addEventListener('click', () => {
-        // reset all elements
-        winnerOutput.innerHTML = "";
-        gameOutput.classList.toggle("display-none");
+    // if one of the 2 play again game buttons is clicked, reset the game
+    const playAgain = document.getElementsByClassName("play-again");
 
-        for (const item of items) {
-            item.style.background = "";
-            item.innerHTML = "_";
-        }
+    for (const element of playAgain) {
+        element.addEventListener('click', () => {
+            // reset all elements
+            winnerOutput.innerHTML = "";
 
-        gameFinised = false;
-        currentColor = black;
-        currentPlayer = "x";
-    });
+            if (gameFinished) {
+                gameOutput.classList.toggle("display-none");
+            }
+
+            for (const item of items) {
+                item.style.background = "";
+                item.innerHTML = "_";
+            }
+
+            gameFinished = false;
+            currentColor = black;
+            currentPlayer = "x";
+        });
+    }
 });
 
 // chooses which div has to appear, desktop or mobile one
@@ -88,7 +94,7 @@ function toggleCurrentPlayer() {
     else if (currentPlayer == "o") currentPlayer = "x";
 }
 
-// if the game must end sets gameFinised to true 
+// if the game must end sets gameFinished to true 
 function checkGameEnd() {
     let arrThreeInARow = trheeInARow("x") || trheeInARow("o");
     let condition1 = arrThreeInARow[0];
@@ -100,16 +106,16 @@ function checkGameEnd() {
 
         winnerOutput.innerHTML = winner.toUpperCase() + " won!";
         colorizeGreen(arrThreeInARow);
-        gameFinised = true;
+        gameFinished = true;
     }
 
     // else, if all items are filled, game must end
     else if (condition2) {
         winnerOutput.innerHTML = "Draw!";
-        gameFinised = true;
+        gameFinished = true;
     }
 
-    // common code if one of the conditions is true
+    // if one of the conditions is true
     if (condition1 || condition2) {
         gameOutput.classList.toggle("display-none");
     }
@@ -174,3 +180,5 @@ function trheeInARow(p) {
 function trheeRowAux(itemA, itemB, itemC, p) {
     return itemA == p && itemB == p && itemC == p;
 }
+
+// todo: remove :focus after x seconds
