@@ -21,3 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
+
+/*
+todo:
+    remove focus after x seconds
+    fix firefox bug
+*/

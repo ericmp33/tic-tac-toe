@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // if any game item is clicked, do game logic
     for (const item of items) {
         item.addEventListener('click', () => {
-            if (!gameFinished && hasDifBackground(item.style.background)) {
+            // if game isn't finished and the item doesn't have background
+            if (!gameFinished && item.style.background == "") {
                 item.style.background = currentColor;
                 toggleCurrentColor();
 
@@ -52,11 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-
-// returns true if parsed background is diferent than black or white
-function hasDifBackground(background) {
-    return background != black && background != white;
-}
 
 // toggles the current color
 function toggleCurrentColor() {
