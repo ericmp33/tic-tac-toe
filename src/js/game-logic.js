@@ -1,6 +1,6 @@
 const white = "rgb(61, 65, 75)";
 const black = "rgba(19, 21, 24, 0.616)";
-const green = "rgb(29 195 72 / 58%)";
+const green = "rgba(29, 195, 72, 58%)";
 var gameFinished = false;
 var items;
 var currentColor;
@@ -30,10 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
     // if one of the 2 play again game buttons is clicked, reset the game
     const playAgain = document.getElementsByClassName("play-again");
-
     for (const element of playAgain) {
         element.addEventListener('click', () => {
             // reset all elements
@@ -57,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // returns true if parsed background is diferent than black or white
 function hasDifBackground(background) {
-    return !(background == black || background == white);
+    return background != black || background != white;
 }
 
 // toggles the current color
