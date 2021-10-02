@@ -1,3 +1,8 @@
+:root {
+    --white: rgb(211, 211, 211);
+    --black: #2c313a;
+}
+
 *,
 *::before,
 *::after {
@@ -13,17 +18,12 @@
     border-radius: 7px;
 }
 
-a {
-    text-decoration: none;
-}
-
-:root {
-    --white: rgb(211, 211, 211);
-    --black: #2c313a;
-}
-
 body {
     background: var(--black);
+}
+
+a {
+    text-decoration: none;
 }
 
 .flex-center {
@@ -46,6 +46,7 @@ body {
     box-shadow: rgba(17, 17, 26, 0.3) 0px 8px 24px,
         rgba(17, 17, 26, 0.3) 0px 16px 56px, rgba(17, 17, 26, 0.3) 0px 24px 80px;
     margin: 30px 20px 60px 20px;
+    border-radius: 20px;
 }
 
 .title-container {
