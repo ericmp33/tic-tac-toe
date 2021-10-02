@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const desktopDiv = document.getElementById("info");
+    const desktopDiv = document.getElementById("info-desktop");
     const mobileDiv = document.getElementById("info-mobile");
 
     // first check
