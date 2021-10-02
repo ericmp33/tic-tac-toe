@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // returns true if parsed background is diferent than black or white
 function hasDifBackground(background) {
-    return background != black || background != white;
+    return background != black && background != white;
 }
 
 // toggles the current color
