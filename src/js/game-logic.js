@@ -9,17 +9,6 @@ var gameOutput;
 var winnerOutput;
 
 document.addEventListener("DOMContentLoaded", () => {
-    const desktopDiv = document.getElementById("info-desktop");
-    const mobileDiv = document.getElementById("info-mobile");
-
-    // first check
-    responsiveDivCheck(desktopDiv, mobileDiv);
-
-    // if window width changes, fit code to it (event listener check)
-    window.addEventListener('resize', () => {
-        responsiveDivCheck(desktopDiv, mobileDiv);
-    });
-
     items = document.getElementsByClassName("item");
     gameOutput = document.getElementById("game-output");
     winnerOutput = document.getElementById("winner");
@@ -66,17 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// chooses which div has to appear, desktop or mobile one
-function responsiveDivCheck(desktopDiv, mobileDiv) {
-    let windowWidth = window.innerWidth;
-
-    if (windowWidth >= 386 && desktopDiv.classList.contains("display-none") ||
-        windowWidth < 386 && mobileDiv.classList.contains("display-none")) {
-        desktopDiv.classList.toggle("display-none");
-        mobileDiv.classList.toggle("display-none");
-    }
-}
-
 // returns true if parsed background is diferent than black or white
 function hasDifBackground(background) {
     return !(background == black || background == white);
@@ -103,20 +81,18 @@ function checkGameEnd() {
     // if a player does three in a row, game must end
     if (condition1) {
         let winner = arrThreeInARow[1];
-
         winnerOutput.innerHTML = winner.toUpperCase() + " won!";
         colorizeGreen(arrThreeInARow);
-        gameFinished = true;
     }
 
     // else, if all items are filled, game must end
     else if (condition2) {
         winnerOutput.innerHTML = "Draw!";
-        gameFinished = true;
     }
 
     // if one of the conditions is true
     if (condition1 || condition2) {
+        gameFinished = true;
         gameOutput.classList.toggle("display-none");
     }
 }
@@ -180,5 +156,3 @@ function trheeInARow(p) {
 function trheeRowAux(itemA, itemB, itemC, p) {
     return itemA == p && itemB == p && itemC == p;
 }
-
-// todo: remove :focus after x seconds
