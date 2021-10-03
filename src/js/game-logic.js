@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // if any game item is clicked, do game logic
     for (const item of items) {
         item.addEventListener('click', () => {
-            // if game isn't finished and the item doesn't have background
+            // if game isn't finished and item doesn't have background
             if (!gameFinished && item.style.background == "") {
                 item.style.background = currentColor;
                 toggleCurrentColor();
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // if one of the 2 play again game buttons is clicked, reset the game
+    // if one of the 2 play again game elements is clicked, reset and restart game
     const playAgain = document.getElementsByClassName("play-again");
     for (const element of playAgain) {
         element.addEventListener('click', () => {
@@ -54,19 +54,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// toggles the current color
 function toggleCurrentColor() {
     if (currentColor == white) currentColor = black;
     else if (currentColor == black) currentColor = white;
 }
 
-// toggles the current player
 function toggleCurrentPlayer() {
     if (currentPlayer == "x") currentPlayer = "o";
     else if (currentPlayer == "o") currentPlayer = "x";
 }
 
-// if the game must end sets gameFinished to true 
+// if game must end sets gameFinished to true 
 function checkGameEnd() {
     let arrThreeInARow = trheeInARow("x") || trheeInARow("o");
     let condition1 = arrThreeInARow[0];
