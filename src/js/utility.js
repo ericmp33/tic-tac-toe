@@ -20,10 +20,35 @@ document.addEventListener("DOMContentLoaded", () => {
             mobileDiv.classList.toggle("display-none");
         }
     }
+
+    // remove the blur of the document elements after delay of time
+    const allElements = new Array();
+    const playAgain = document.getElementsByClassName("play-again");
+    const items = document.getElementsByClassName("item");
+    const info = document.getElementsByTagName("a");
+
+    for (const element of playAgain) {
+        allElements.push(element);
+    }
+
+    for (const element of items) {
+        allElements.push(element);
+    }
+
+    for (const element of info) {
+        allElements.push(element);
+    }
+
+    for (const element of allElements) {
+        element.addEventListener("click", () => removeBlurSmoothly(element));
+    }
 });
 
-/*
-todo:
-    remove focus after x seconds
-    fix firefox bug
-*/
+// removes the blur of the parsed element with delay
+const removeBlurSmoothly = async (element) => {
+    await delay(1400);
+    element.blur();
+};
+
+// utility function
+const delay = m => new Promise(res => setTimeout(res, m));
