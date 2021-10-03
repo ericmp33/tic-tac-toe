@@ -26,6 +26,12 @@ a {
     text-decoration: none;
 }
 
+button {
+    border: none;
+    cursor: pointer;
+    background: inherit;
+}
+
 .flex-center {
     display: flex;
     align-content: center;
@@ -56,6 +62,8 @@ a {
 
 .title {
     padding: 10px;
+    font-size: xx-large;
+    font-weight: bold;
 }
 
 .board {
@@ -75,28 +83,37 @@ a {
     font-weight: bold;
 }
 
+.title-container button:focus,
+.title-container button:hover,
+.row button:focus,
+.row button:hover,
+.game-output button:focus,
+.game-output button:hover,
 .title-container a:focus,
 .title-container a:hover,
 .row a:focus,
-.row a:hover,
-.game-output a:focus,
-.game-output a:hover {
+.row a:hover {
     outline: 0;
     background: #21252b;
     transform: scale(1.1);
 }
 
-.info a,
-.game-output a {
+.info button,
+.game-output button,
+.info a {
     padding-bottom: 10px;
     text-decoration-line: underline;
     text-underline-offset: 8px;
 }
 
-.info a:hover,
+.game-output button:focus,
+.game-output button:hover {
+    text-decoration: none;
+    padding: 10px;
+}
+
 .info a:focus,
-.game-output a:hover,
-.game-output a:focus {
+.info a:hover {
     outline: 0;
     background: #21252b;
     transform: scale(2);
@@ -119,4 +136,8 @@ a {
 .p-info {
     text-align: center;
     margin-bottom: 30px;
+}
+
+.play-again-2 {
+    font-size: inherit;
 }
