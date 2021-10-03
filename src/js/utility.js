@@ -42,6 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
     for (const element of allElements) {
         element.addEventListener("click", () => removeBlurSmoothly(element));
     }
+
+    allElements.map(element => element.addEventListener('click', () => removeBlurSmoothly(element)));
 });
 
 // removes the blur of the parsed element with delay
