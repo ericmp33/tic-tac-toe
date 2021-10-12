@@ -6,9 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     responsiveDivCheck();
 
     // if window width changes, fit elements to it
-    window.addEventListener('resize', () => {
-        responsiveDivCheck();
-    });
+    window.addEventListener('resize', responsiveDivCheck);
 
     // chooses which div has to appear, desktop or mobile one
     function responsiveDivCheck() {
@@ -21,29 +19,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // remove the blur of the document elements after delay of time
-    const allElements = new Array();
-    const playAgain = document.getElementsByClassName("play-again");
-    const items = document.getElementsByClassName("item");
-    const info = document.getElementsByTagName("a");
+    // add user interactive elements to allElements array
+    const allElements = [
+        ...document.getElementsByClassName("play-again"),
+        ...document.getElementsByClassName("item"),
+        ...document.getElementsByTagName("a")
+    ];
 
-    for (const element of playAgain) {
-        allElements.push(element);
-    }
-
-    for (const element of items) {
-        allElements.push(element);
-    }
-
-    for (const element of info) {
-        allElements.push(element);
-    }
-
-    for (const element of allElements) {
-        element.addEventListener("click", () => removeBlurSmoothly(element));
-    }
-
-    allElements.map(element => element.addEventListener('click', () => removeBlurSmoothly(element)));
+    // remove blur of elements after delay of time
+    allElements.forEach(element => element.addEventListener('click', () =>
+        removeBlurSmoothly(element)
+    ));
 });
 
 // removes the blur of the parsed element with delay
@@ -52,5 +38,5 @@ const removeBlurSmoothly = async (element) => {
     element.blur();
 };
 
-// utility function
+// utility function to set an async delay
 const delay = m => new Promise(res => setTimeout(res, m));

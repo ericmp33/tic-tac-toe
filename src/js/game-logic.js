@@ -1,12 +1,12 @@
 const white = "rgb(61, 65, 75)";
 const black = "rgba(19, 21, 24, 0.616)";
 const green = "rgba(29, 195, 72, 58%)";
-var gameFinished = false;
-var items;
-var currentColor;
-var currentPlayer;
-var gameOutput;
-var winnerOutput;
+let gameFinished = false;
+let items;
+let currentColor;
+let currentPlayer;
+let gameOutput;
+let winnerOutput;
 
 document.addEventListener("DOMContentLoaded", () => {
     items = document.querySelectorAll(".item");
@@ -129,7 +129,6 @@ function trheeInARow(p) {
     const i7Inner = i7.innerHTML;
     const i8Inner = i8.innerHTML;
 
-    if (trheeRowAux(i0Inner, i1Inner, i2Inner, p)) return [true, p, i0.id, i1.id, i2.id];
     if (trheeRowAux(i0Inner, i1Inner, i2Inner, p)) return [true, p, i0.id, i1.id, i2.id];
     if (trheeRowAux(i3Inner, i4Inner, i5Inner, p)) return [true, p, i3.id, i4.id, i5.id];
     if (trheeRowAux(i6Inner, i7Inner, i8Inner, p)) return [true, p, i6.id, i7.id, i8.id];
