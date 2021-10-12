@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     for (const item of items) {
         item.addEventListener('click', () => {
             // if game isn't finished and item doesn't have background
-            if (!gameFinished && item.style.background == "") {
+            if (!gameFinished && item.style.background === "") {
                 item.style.background = currentColor;
                 toggleCurrentColor();
 
@@ -55,13 +55,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function toggleCurrentColor() {
-    if (currentColor == white) currentColor = black;
-    else if (currentColor == black) currentColor = white;
+    if (currentColor === white) currentColor = black;
+    else if (currentColor === black) currentColor = white;
 }
 
 function toggleCurrentPlayer() {
-    if (currentPlayer == "x") currentPlayer = "o";
-    else if (currentPlayer == "o") currentPlayer = "x";
+    if (currentPlayer === "x") currentPlayer = "o";
+    else if (currentPlayer === "o") currentPlayer = "x";
 }
 
 // if game must end sets gameFinished to true 
@@ -102,7 +102,7 @@ function colorizeGreen(arrThreeInARow) {
 // returns true if all items are different than "_", which means all items are filled
 function allItemsFilled() {
     for (const item of items) {
-        if (item.innerHTML == "_") return false;
+        if (item.innerHTML === "_") return false;
     }
     return true;
 }
@@ -145,5 +145,5 @@ function threeInARow(p) {
 
 // returns true if all items are equals to player
 function threeRowAux(itemA, itemB, itemC, p) {
-    return itemA == p && itemB == p && itemC == p;
+    return itemA === p && itemB === p && itemC === p;
 }
