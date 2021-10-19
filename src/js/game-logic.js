@@ -8,7 +8,7 @@ let currentPlayer;
 let gameOutput;
 let winnerOutput;
 
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener('load', () => {
     items = document.querySelectorAll(".item");
     gameOutput = document.querySelector("#game-output");
     winnerOutput = document.querySelector("#winner");

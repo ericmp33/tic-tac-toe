@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener('load', () => {
     const desktopDiv = document.getElementById("info-desktop");
     const mobileDiv = document.getElementById("info-mobile");
 
