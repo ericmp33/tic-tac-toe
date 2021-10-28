@@ -1,3 +1,5 @@
+"use strict";
+
 const white = "rgb(61, 65, 75)";
 const black = "rgba(19, 21, 24, 0.616)";
 const green = "rgba(29, 195, 72, 58%)";
