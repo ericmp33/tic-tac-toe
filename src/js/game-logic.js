@@ -118,7 +118,8 @@ function threeInARow(p) {
         [0, 3, 6],
         [1, 4, 7],
         [0, 4, 8],
-        [2, 4, 6]
+        [2, 4, 6],
+        [2, 5, 8],
     ];
 
     for (const con of conditions) {
