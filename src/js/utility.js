@@ -1,44 +1,38 @@
-"use strict";
+const desktopDiv = document.querySelector("#info-desktop")
+const mobileDiv = document.querySelector("#info-mobile")
 
-window.addEventListener('load', () => {
-    const desktopDiv = document.getElementById("info-desktop");
-    const mobileDiv = document.getElementById("info-mobile");
+/**
+ * Shows/hides mobile/desktop div depending on current window width.
+ */
+const responsiveDivCheck = () => {
+  if (window.innerWidth >= 386) {
+    desktopDiv.classList.remove("display-none")
+    mobileDiv.classList.add("display-none")
+  } else {
+    desktopDiv.classList.add("display-none")
+    mobileDiv.classList.remove("display-none")
+  }
+}
 
-    // first check
-    responsiveDivCheck();
+// first check
+responsiveDivCheck()
 
-    // if window width changes, fit elements to it
-    window.addEventListener('resize', responsiveDivCheck);
+// if window width changes, fit elements to it
+window.addEventListener('resize', responsiveDivCheck)
 
-    // chooses which div has to appear, desktop or mobile one
-    function responsiveDivCheck() {
-        let windowWidth = window.innerWidth;
+// add user interactive elements to allElements array
+const allElements = document.querySelectorAll(".play-again, .item, a")
 
-        if (windowWidth >= 386 && desktopDiv.classList.contains("display-none") ||
-            windowWidth < 386 && mobileDiv.classList.contains("display-none")) {
-            desktopDiv.classList.toggle("display-none");
-            mobileDiv.classList.toggle("display-none");
-        }
-    }
+// remove blur of elements after delay of time
+allElements.forEach(element => element.addEventListener('click', async () => {
+  // wait 1.4 seconds
+  await delay(1400)
 
-    // add user interactive elements to allElements array
-    const allElements = [
-        ...document.getElementsByClassName("play-again"),
-        ...document.getElementsByClassName("item"),
-        ...document.getElementsByTagName("a")
-    ];
+  element.blur()
+}))
 
-    // remove blur of elements after delay of time
-    allElements.forEach(element => element.addEventListener('click', () =>
-        removeBlurSmoothly(element)
-    ));
-});
-
-// removes the blur of the parsed element with delay
-const removeBlurSmoothly = async (element) => {
-    await delay(1400);
-    element.blur();
-};
-
-// utility function to set an async delay
-const delay = m => new Promise(res => setTimeout(res, m));
+/**
+ * Sets an async delay of time.
+ * @param {Number} miliseconds Time to wait, in miliseconds
+ */
+const delay = miliseconds => new Promise(res => setTimeout(res, miliseconds))

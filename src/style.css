@@ -1,86 +1,89 @@
 :root {
-    --white: rgb(211, 211, 211);
-    --black: #2c313a;
+  --white: rgb(211, 211, 211);
+  --black: #2c313a;
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 * {
-    padding: 0;
-    margin: 0;
-    font-family: "Cascadia Code", sans-serif;
-    color: var(--white);
-    transition: all 0.4s;
-    border-radius: 7px;
+  padding: 0;
+  margin: 0;
+  font-family: "Cascadia Code", sans-serif;
+  color: var(--white);
+  transition: all 0.4s;
+  border-radius: 7px;
 }
 
 body {
-    background: var(--black);
+  background: var(--black);
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 button {
-    border: none;
-    cursor: pointer;
-    background: inherit;
+  border: none;
+  cursor: pointer;
+  background: inherit;
 }
 
 .flex-center {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .flex-container {
-    min-height: 100vh;
-    flex-direction: column;
-    justify-content: space-evenly;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .interface {
-    flex-direction: column;
-    background-color: #282c34;
-    padding: 15px;
-    box-shadow: rgba(17, 17, 26, 0.3) 0px 8px 24px,
-        rgba(17, 17, 26, 0.3) 0px 16px 56px, rgba(17, 17, 26, 0.3) 0px 24px 80px;
-    margin: 30px 20px 60px 20px;
-    border-radius: 20px;
+  flex-direction: column;
+  background-color: #282c34;
+  padding: 15px;
+  box-shadow: 
+    rgba(17, 17, 26, 0.3) 0px 8px 24px,
+    rgba(17, 17, 26, 0.3) 0px 16px 56px,
+    rgba(17, 17, 26, 0.3) 0px 24px 80px
+  ;
+  margin: 30px 20px 60px 20px;
+  border-radius: 20px;
 }
 
 .title-container {
-    width: 236.25px;
-    height: 99px;
+  width: 236.25px;
+  height: 99px;
 }
 
 .title {
-    padding: 10px;
-    font-size: xx-large;
-    font-weight: bold;
+  padding: 10px;
+  font-size: xx-large;
+  font-weight: bold;
 }
 
 .board {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .row {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .item {
-    margin: 10px;
-    padding: 20px;
-    font-size: 2em;
-    font-weight: bold;
+  margin: 10px;
+  padding: 20px;
+  font-size: 2em;
+  font-weight: bold;
 }
 
 .title-container button:focus,
@@ -93,51 +96,51 @@ button {
 .title-container a:hover,
 .row a:focus,
 .row a:hover {
-    outline: 0;
-    background: #21252b;
-    transform: scale(1.1);
+  outline: 0;
+  background: #21252b;
+  transform: scale(1.1);
 }
 
 .info button,
 .game-output button,
 .info a {
-    padding-bottom: 10px;
-    text-decoration-line: underline;
-    text-underline-offset: 8px;
+  padding-bottom: 10px;
+  text-decoration-line: underline;
+  text-underline-offset: 8px;
 }
 
 .game-output button:focus,
 .game-output button:hover {
-    text-decoration: none;
-    padding: 10px;
+  text-decoration: none;
+  padding: 10px;
 }
 
 .info a:focus,
 .info a:hover {
-    outline: 0;
-    background: #21252b;
-    transform: scale(2);
-    text-decoration: none;
-    padding: 10px;
+  outline: 0;
+  background: #21252b;
+  transform: scale(2);
+  text-decoration: none;
+  padding: 10px;
 }
 
 .game-output {
-    margin: 15px 0;
+  margin: 15px 0;
 }
 
 .winner {
-    display: inline-block;
+  display: inline-block;
 }
 
 .display-none {
-    display: none;
+  display: none;
 }
 
 .p-info {
-    text-align: center;
-    margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .play-again-2 {
-    font-size: inherit;
+  font-size: inherit;
 }

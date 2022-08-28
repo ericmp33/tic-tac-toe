@@ -1,138 +1,160 @@
-"use strict";
+const WHITE = "rgb(61, 65, 75)"
+const BLACK = "rgba(19, 21, 24, 0.616)"
+const GREEN = "rgba(29, 195, 72, 58%)"
 
-const white = "rgb(61, 65, 75)";
-const black = "rgba(19, 21, 24, 0.616)";
-const green = "rgba(29, 195, 72, 58%)";
-let gameFinished = false;
-let items;
-let currentColor;
-let currentPlayer;
-let gameOutput;
-let winnerOutput;
+const items = document.querySelectorAll(".item")
+const gameOutput = document.querySelector("#gameOutput")
+const winnerOutput = document.querySelector("#winner")
 
-window.addEventListener('load', () => {
-    items = document.querySelectorAll(".item");
-    gameOutput = document.querySelector("#game-output");
-    winnerOutput = document.querySelector("#winner");
-    currentColor = black;
-    currentPlayer = "x";
+let gameFinished = false
+let currentColor = BLACK
+let currentPlayer = "x"
 
-    // if any game item is clicked, do game logic
+for (const item of items) {
+  // if any game item is clicked, do game logic
+  item.addEventListener('click', () => {
+    // if game isn't finished and item doesn't have background
+    if (! gameFinished && item.style.background === "") {
+      // set item's background
+      item.style.background = currentColor
+      toggleCurrentColor()
+
+      // set item's player
+      item.textContent = currentPlayer
+      toggleCurrentPlayer()
+
+      checkGameEnd()
+    }
+  })
+}
+
+document.querySelectorAll(".play-again").forEach(playAgainBtn => {
+  // if any "Play again" button is clicked
+  playAgainBtn.addEventListener('click', () => {
+    // reset and restart game
+    winnerOutput.textContent = ""
+
+    gameOutput.classList.add("display-none")
+
     for (const item of items) {
-        item.addEventListener('click', () => {
-            // if game isn't finished and item doesn't have background
-            if (!gameFinished && item.style.background === "") {
-                item.style.background = currentColor;
-                toggleCurrentColor();
-
-                item.innerHTML = currentPlayer;
-                toggleCurrentPlayer();
-
-                checkGameEnd();
-            }
-        });
+      item.style.background = ""
+      item.textContent = "_"
     }
 
-    // if one of the 2 play again game elements is clicked, reset and restart game
-    const playAgain = document.querySelectorAll(".play-again");
-    for (const element of playAgain) {
-        element.addEventListener('click', () => {
-            // reset all elements
-            winnerOutput.innerHTML = "";
+    gameFinished = false
+    currentColor = BLACK
+    currentPlayer = "x"
+  })
+})
 
-            if (gameFinished) {
-                gameOutput.classList.toggle("display-none");
-            }
-
-            for (const item of items) {
-                item.style.background = "";
-                item.innerHTML = "_";
-            }
-
-            gameFinished = false;
-            currentColor = black;
-            currentPlayer = "x";
-        });
-    }
-});
-
-function toggleCurrentColor() {
-    if (currentColor === white) currentColor = black;
-    else if (currentColor === black) currentColor = white;
+/**
+ * Toggles currentColor variable's value.
+ * Valid values: constraints WHITE or BLACK
+ */
+const toggleCurrentColor = () => {
+  if (currentColor === WHITE) currentColor = BLACK
+  else if (currentColor === BLACK) currentColor = WHITE
+  else console.error(`Unexpected currentColor value`)
 }
 
-function toggleCurrentPlayer() {
-    if (currentPlayer === "x") currentPlayer = "o";
-    else if (currentPlayer === "o") currentPlayer = "x";
+/**
+ * Toggles currentPlayer variable's value.
+ * Valid values: "x" or "o"
+ */
+const toggleCurrentPlayer = () => {
+  if (currentPlayer === "x") currentPlayer = "o"
+  else if (currentPlayer === "o") currentPlayer = "x"
+  else console.error(`Unexpected currentPlayer value`)
 }
 
-// if game must end sets gameFinished to true 
-function checkGameEnd() {
-    let arrThreeInARow = threeInARow("x") || threeInARow("o");
-    let condition1 = arrThreeInARow[0];
-    let condition2 = allItemsFilled();
+/**
+ * Checks if game has to end. Handles game's logic.
+ */
+const checkGameEnd = () => {
+  // store if "x" or "o" made 3 in a row
+  let playerWon = threeInARow("x") || threeInARow("o")
+  let allItemsFilled = areAllItemsFilled()
 
-    // if a player does three in a row, game must end
-    if (condition1) {
-        let winner = arrThreeInARow[1];
-        winnerOutput.innerHTML = winner.toUpperCase() + " won!";
-        colorizeGreen(arrThreeInARow);
-    }
+  if (playerWon) {
+    winnerOutput.textContent = `${playerWon[1].toUpperCase()} won!`
 
-    // else, if all items are filled, game must end
-    else if (condition2) {
-        winnerOutput.innerHTML = "Draw!";
-    }
+    colorizeGreen([
+      document.querySelector("#" + playerWon[2]),
+      document.querySelector("#" + playerWon[3]),
+      document.querySelector("#" + playerWon[4])
+    ])
+  }
 
-    // if one of the conditions is true
-    if (condition1 || condition2) {
-        gameFinished = true;
-        gameOutput.classList.toggle("display-none");
-    }
+  else if (allItemsFilled) {
+    winnerOutput.textContent = "Draw!"
+  }
+
+  if (playerWon || allItemsFilled) {
+    gameFinished = true
+    gameOutput.classList.remove("display-none")
+  }
 }
 
-// colorizes to green the items that made three in a row
-function colorizeGreen(arrThreeInARow) {
-    [
-        document.querySelector("#" + arrThreeInARow[2]),
-        document.querySelector("#" + arrThreeInARow[3]),
-        document.querySelector("#" + arrThreeInARow[4])
-    ]
-        .forEach(item => item.style.background = green);
+/**
+ * Changes parsed DOM elements background color to green.
+ * @param {Array} array Array containing DOM elements
+ */
+const colorizeGreen = array => {
+  array.forEach(item => item.style.background = GREEN)
 }
 
-// returns true if all items are different than "_", which means all items are filled
-function allItemsFilled() {
-    for (const item of items) {
-        if (item.innerHTML === "_") return false;
+/**
+ * Checks if all items are different than "_", which means all items are filled.
+ * @returns True if all items are different than "_". Otherwise, false.
+ */
+const areAllItemsFilled = () => {
+  for (const item of items) {
+    if (item.textContent === "_") return false
+  }
+
+  return true
+}
+
+/**
+ * For each win condition, checks if items are equal to player. If so, did three in a row and won the game.
+ * 
+ * @param {String} playerName Player's name ("x" or "o")
+ * @returns If condition is true, array with 1st element to true with DOM elements that made the three in a row. Otherwise, false
+ */
+const threeInARow = playerName => {
+  let winConditions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [0, 4, 8],
+    [2, 4, 6],
+    [2, 5, 8]
+  ]
+
+  for (const con of winConditions) {
+    const elements = document.querySelectorAll(`#item-${con[0]}, #item-${con[1]}, #item-${con[2]}`)
+
+    if (allItemsAreEqual([elements[0].textContent, elements[1].textContent, elements[2].textContent, playerName])) {
+      return [
+        true,
+        playerName,
+        `item-${con[0]}`,
+        `item-${con[1]}`,
+        `item-${con[2]}`
+      ]
     }
-    return true;
+  }
+
+  return false
 }
 
-// returns true and which items made it if there is three in a row
-function threeInARow(p) {
-    let conditions = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [0, 4, 8],
-        [2, 4, 6],
-        [2, 5, 8],
-    ];
-
-    for (const con of conditions) {
-        const elements = document.querySelectorAll(`#item-${con[0]}, #item-${con[1]}, #item-${con[2]}`);
-        if (threeRowAux(elements[0].innerHTML, elements[1].innerHTML, elements[2].innerHTML, p)) {
-            return [true, p, `item-${con[0]}`, `item-${con[1]}`, `item-${con[2]}`];
-        }
-    }
-
-    return false;
-}
-
-// returns true if all items are equals to player
-function threeRowAux(itemA, itemB, itemC, p) {
-    return itemA === p && itemB === p && itemC === p;
+/**
+ * Checks if all array items are equal.
+ * 
+ * @param {Array} array Array of items to be checked
+ */
+const allItemsAreEqual = array => {
+  return array.every((val, i, arr) => val === arr[0])  
 }
